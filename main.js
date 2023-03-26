@@ -1,11 +1,13 @@
 //                Set Variable
 
 const screen = document.querySelector('.screen');
-const decrement = document.querySelector('.btn1');
-const crement = document.querySelector('.btn2');
+const decrement = document.querySelector('.btnDécrém');
+const crement = document.querySelector('.btnCrém');
+const Reset = document.querySelector('.btnReset');
+const Set = document.querySelector('.btnSet');
+const spanSet = document.querySelector('button .spanSet');
 const btns = document.querySelectorAll('button')
 let counter = 0; // this will be changed when clicked
-
 
 //    Set function 
 
@@ -27,8 +29,30 @@ let counter = 0; // this will be changed when clicked
 
 btns.forEach( function(btn){
   btn.onclick = function () {
-    btn.textContent === "Décrément"? counter--:counter++;
-    screen.innerText = ` ${counter}`
+    let btnName = btn.getAttribute('class')   ;
+    btnName === "btnDécrém"?screen.innerText = ` ${--counter}`:"";
+    btnName === "btnCrém"?screen.innerText = ` ${++counter}`:"";
+    btnName === "btnReset"?screen.innerText = ` ${counter =0}`:"";
+    if(btnName === "btnSet"){
+      let newNum = Number(screen.innerText);
+      spanSet.innerText =`: ${newNum}`;
+      btn.onclick = function () {
+      if(btnName === "btnDécrém"){
+        console.log(newNum);
+        console.log(counter);
+        counter -= newNum;
+        screen.innerText = ` ${counter}`;
+      }
+      else if(btnName === "btnCrém"){
+        // ?screen.innerText = ` ${counter += newNum}`:"";
+      }
+    }
+      
+    }
+    
+
+
+
   }
 })
 // methode2  ok success
